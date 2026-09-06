@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetFiltersBtn = document.getElementById("reset-filters-btn");
   const errorState = document.getElementById("error-state");
   const retryFetchBtn = document.getElementById("retry-fetch-btn");
-  const statTotalProducts = document.getElementById("stat-total-products");
-  const apiStatusEl = document.getElementById("api-status");
 
   // Modal Elements
   const productModal = document.getElementById("product-modal");
@@ -28,7 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalTitle = document.getElementById("modal-title");
   const modalPrice = document.getElementById("modal-price");
   const modalDescription = document.getElementById("modal-description");
-  const modalViewApiBtn = document.getElementById("modal-view-api-btn");
+  const modalBuyNowBtn = document.getElementById("modal-buy-now-btn");
+
+  // Toast Elements
+  const toastNotification = document.getElementById("toast-notification");
+  const toastTitle = document.getElementById("toast-title");
+  const toastMessage = document.getElementById("toast-message");
 
   // Application State
   const state = {
@@ -180,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchProducts() {
     state.isLoading = true;
     renderSkeletons(8);
-    resultsCountText.textContent = "Menghubungkan ke FakeStore API...";
+    resultsCountText.textContent = "Memuat katalog produk...";
 
     try {
       const response = await fetch("https://fakestoreapi.com/products");
@@ -191,19 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
       state.products = data;
       state.isLoading = false;
 
-      // Update stats
-      if (statTotalProducts) {
-        statTotalProducts.textContent = data.length;
-      }
-
-      // Update API status banner
-      if (apiStatusEl) {
-        apiStatusEl.innerHTML = `
-          <span class="status-indicator"></span>
-          <span class="status-label">API Aktif (${data.length} Item)</span>
-        `;
-      }
-
       applyFiltersAndRender();
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -212,13 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyState.hidden = true;
       errorState.hidden = false;
       resultsCountText.textContent = "Gagal memuat data";
-
-      if (apiStatusEl) {
-        apiStatusEl.innerHTML = `
-          <span class="status-indicator" style="background-color: #EF4444; box-shadow: 0 0 8px #EF4444;"></span>
-          <span class="status-label">Koneksi API Gagal</span>
-        `;
-      }
     }
   }
 
@@ -394,12 +377,11 @@ document.addEventListener("DOMContentLoaded", () => {
     modalPrice.textContent = formatRupiah(product.price);
     modalDescription.textContent = product.description;
 
-    // API link handler
-    modalViewApiBtn.onclick = () => {
-      window.open(
-        `https://fakestoreapi.com/products/${product.id}`,
-        "_blank",
-        "noopener,noreferrer",
+    // Buy Now handler
+    modalBuyNowBtn.onclick = () => {
+      showToast(
+        "Pesanan Berhasil Diproses! ✓",
+        `"${product.title}" senilai Rp ${formatRupiah(product.price)} telah ditambahkan ke pesanan Anda.`,
       );
     };
 
@@ -448,6 +430,31 @@ document.addEventListener("DOMContentLoaded", () => {
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  /**
+   * Show Toast Notification for order confirmation
+   */
+  let toastTimer = null;
+  function showToast(title, message) {
+    if (toastTimer) clearTimeout(toastTimer);
+
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+    toastNotification.hidden = false;
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+      toastNotification.classList.add("show");
+    });
+
+    // Auto-dismiss after 4 seconds
+    toastTimer = setTimeout(() => {
+      toastNotification.classList.remove("show");
+      setTimeout(() => {
+        toastNotification.hidden = true;
+      }, 350);
+    }, 4000);
   }
 
   // Search Input with Debounce
