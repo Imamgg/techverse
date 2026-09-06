@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Techverse 2026 - Eksplorasi katalog produk modern dengan estetika Glassmorphism bertenaga FakeStoreAPI. Nikmati pencarian instan, filter kategori, dan detail interaktif."
+    />
+    <meta name="theme-color" content="#202321" />
+    <title>Techverse 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Ambient Glowing Background Elements -->
+    <div class="ambient-background" aria-hidden="true">
+      <div class="glow-orb orb-1"></div>
+      <div class="glow-orb orb-2"></div>
+      <div class="glow-orb orb-3"></div>
+      <div class="glow-mesh-grid"></div>
+    </div>
+
+    <!-- Main Application Wrapper -->
+    <div class="app-wrapper">
+      <!-- Navigation Bar -->
+      <header class="glass-nav-header">
+        <div class="nav-container">
+          <a
+            href="#"
+            class="brand-logo"
+            id="brand-logo"
+            aria-label="TechVerse Beranda"
+          >
+            <div class="logo-symbol">
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span class="logo-text"
+              >Tech<span class="highlight-text">Verse</span></span
+            >
+            <span class="badge-tag">2026</span>
+          </a>
+
+          <div class="nav-right">
+            <div
+              class="api-status-pill"
+              id="api-status"
+              title="Status FakeStoreAPI"
+            >
+              <span class="status-indicator"></span>
+              <span class="status-label">FakeStore API Terhubung</span>
+            </div>
+            <a
+              href="https://fakestoreapi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-icon-button"
+              title="Dokumentasi FakeStoreAPI"
+              aria-label="Buka Dokumentasi FakeStoreAPI"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                ></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section class="hero-section" id="hero-section">
+        <div class="hero-container">
+          <div class="hero-badge-wrapper">
+            <span class="hero-pill-badge">
+              <span class="sparkle-icon">✦</span>
+              Katalog Produk Generasi Baru
+            </span>
+          </div>
+
+          <h1 class="hero-title">
+            Eksplorasi Koleksi dengan <br />
+            <span class="gradient-text">Sentuhan Glassmorphism</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Temukan gadget elektronik, busana tren, hingga perhiasan eksklusif
+            dari FakeStore API dengan performa kilat, visual transparan
+            futuristik, dan kontrol pintar.
+          </p>
+
+          <!-- Integrated Hero Search Box -->
+          <div class="hero-search-wrapper">
+            <div class="glass-search-box">
+              <span class="search-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </span>
+              <input
+                type="text"
+                id="product-search-input"
+                class="search-input"
+                placeholder="Cari produk impian Anda (misal: backpack, jacket, ssd)..."
+                autocomplete="off"
+                aria-label="Cari produk"
+              />
+              <button
+                type="button"
+                id="clear-search-btn"
+                class="clear-search-btn"
+                title="Hapus pencarian"
+                aria-label="Hapus kata kunci pencarian"
+                hidden
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Stats Strip -->
+          <div class="hero-stats-strip">
+            <div class="stat-item">
+              <span class="stat-number" id="stat-total-products">20</span>
+              <span class="stat-label">Produk Tersedia</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">4</span>
+              <span class="stat-label">Kategori Pilihan</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Akses API Real-time</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Catalog Section -->
+      <main class="catalog-section" id="catalog-section">
+        <div class="catalog-container">
+          <!-- Control Bar (Filter & Sort) -->
+          <div class="glass-controls-panel" id="controls-panel">
+            <div class="controls-top-row">
+              <div
+                class="category-filters-scroll"
+                role="tablist"
+                aria-label="Filter Kategori"
+                id="category-filters-container"
+              >
+                <!-- Rendered dynamically by JS -->
+                <button
+                  type="button"
+                  class="category-chip active"
+                  data-category="all"
+                  role="tab"
+                  aria-selected="true"
+                  id="filter-all"
+                >
+                  <span class="chip-icon">✦</span>
+                  Semua Produk
+                </button>
+              </div>
+            </div>
+
+            <div class="controls-bottom-row">
+              <div class="results-count-display">
+                <span class="results-indicator" id="results-count-text"
+                  >Memuat produk...</span
+                >
+              </div>
+
+              <div class="sort-wrapper">
+                <label for="sort-select" class="sort-label">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="3" y1="6" x2="15" y2="6"></line>
+                    <line x1="3" y1="12" x2="10" y2="12"></line>
+                    <line x1="3" y1="18" x2="7" y2="18"></line>
+                  </svg>
+                  Urutkan:
+                </label>
+                <div class="custom-select-container">
+                  <select
+                    id="sort-select"
+                    class="glass-select"
+                    aria-label="Urutkan produk"
+                  >
+                    <option value="default">Rekomendasi</option>
+                    <option value="price-asc">
+                      Harga: Terendah ke Tertinggi
+                    </option>
+                    <option value="price-desc">
+                      Harga: Tertinggi ke Terendah
+                    </option>
+                    <option value="rating-desc">Rating: Tertinggi</option>
+                    <option value="title-asc">Nama: A - Z</option>
+                  </select>
+                  <span class="select-chevron" aria-hidden="true">
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Gallery Grid -->
+          <div
+            class="product-gallery-grid"
+            id="product-grid"
+            aria-live="polite"
+          ></div>
+
+          <!-- Empty State (When search/filter produces 0 results) -->
+          <div class="empty-state-card glass-card" id="empty-state" hidden>
+            <div class="empty-icon-circle">
+              <svg
+                viewBox="0 0 24 24"
+                width="40"
+                height="40"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </div>
+            <h2 class="empty-title">Tidak Menemukan Produk</h2>
+            <p class="empty-desc" id="empty-desc-text">
+              Maaf, kami tidak dapat menemukan produk yang sesuai dengan
+              kriteria filter atau pencarian Anda.
+            </p>
+            <button
+              type="button"
+              class="glass-action-button"
+              id="reset-filters-btn"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M23 4v6h-6"></path>
+                <path d="M1 20v-6h6"></path>
+                <path
+                  d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                ></path>
+              </svg>
+              Reset Semua Filter
+            </button>
+          </div>
+
+          <!-- Network Error State -->
+          <div class="error-state-card glass-card" id="error-state" hidden>
+            <div class="error-icon-circle">
+              <svg
+                viewBox="0 0 24 24"
+                width="40"
+                height="40"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h2 class="error-title">Gagal Mengambil Data</h2>
+            <p class="error-desc">
+              Terjadi kendala saat memuat data dari FakeStore API. Mohon periksa
+              koneksi internet Anda.
+            </p>
+            <button
+              type="button"
+              class="glass-action-button"
+              id="retry-fetch-btn"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path
+                  d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+                ></path>
+              </svg>
+              Coba Muat Ulang
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- Quick View Product Modal Dialog -->
+      <div
+        class="glass-modal-backdrop"
+        id="product-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        hidden
+      >
+        <div class="modal-dialog-container">
+          <div class="glass-modal-card">
+            <!-- Close Button -->
+            <button
+              type="button"
+              class="modal-close-btn"
+              id="modal-close-btn"
+              aria-label="Tutup pratinjau produk"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            <div class="modal-content-layout">
+              <!-- Product Media Showcase -->
+              <div class="modal-media-column">
+                <div class="modal-image-wrapper">
+                  <img
+                    src=""
+                    alt=""
+                    id="modal-image"
+                    class="modal-product-img"
+                    loading="eager"
+                  />
+                  <span class="modal-category-tag" id="modal-category"
+                    >Kategori</span
+                  >
+                </div>
+              </div>
+
+              <!-- Product Details Column -->
+              <div class="modal-details-column">
+                <div class="modal-header-meta">
+                  <div class="modal-rating-badge" id="modal-rating-badge">
+                    <span class="star-icon">★</span>
+                    <span class="rating-value" id="modal-rating-score"
+                      >4.5</span
+                    >
+                    <span class="rating-count" id="modal-rating-count"
+                      >(120 ulasan)</span
+                    >
+                  </div>
+                  <span class="modal-sku-tag" id="modal-sku">ID: #1</span>
+                </div>
+
+                <h2 class="modal-title" id="modal-title">Nama Produk</h2>
+
+                <div class="modal-price-box">
+                  <span class="price-currency">Rp</span>
+                  <span class="price-figure" id="modal-price">0</span>
+                  <span class="price-badge">Harga Resmi</span>
+                </div>
+
+                <div class="modal-description-section">
+                  <h3 class="section-heading">Deskripsi Produk</h3>
+                  <p class="modal-description-text" id="modal-description">
+                    Memuat detail deskripsi...
+                  </p>
+                </div>
+
+                <div class="modal-actions-group">
+                  <button
+                    type="button"
+                    class="modal-primary-btn"
+                    id="modal-view-api-btn"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path
+                        d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                      ></path>
+                      <path
+                        d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                      ></path>
+                    </svg>
+                    Lihat JSON Data API
+                  </button>
+                  <button
+                    type="button"
+                    class="modal-secondary-btn"
+                    id="modal-dismiss-btn"
+                  >
+                    Tutup Pratinjau
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glassmorphic Footer -->
+      <footer class="glass-footer">
+        <div class="footer-container">
+          <div class="footer-brand-section">
+            <div class="logo-symbol footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <span class="footer-brand-title"
+              >Tech<span class="highlight-text">verse</span> 2026</span
+            >
+            <p class="footer-desc">
+              Katalog showcase berbasis Vanilla HTML, CSS Glassmorphism, dan
+              JavaScript dengan integrasi FakeStore API publik.
+            </p>
+          </div>
+
+          <div class="footer-meta-section">
+            <div class="palette-indicator" title="Palet Warna TechVerse">
+              <span
+                class="color-dot dot-charcoal"
+                title="Charcoal #202321"
+              ></span>
+              <span
+                class="color-dot dot-deepgreen"
+                title="Deep Green #2E4B32"
+              ></span>
+              <span
+                class="color-dot dot-techgreen"
+                title="Tech Green #3B9C51"
+              ></span>
+              <span
+                class="color-dot dot-neongreen"
+                title="Neon Green #5DCC6F"
+              ></span>
+              <span
+                class="color-dot dot-mintgreen"
+                title="Mint Green #9CDBA6"
+              ></span>
+              <span
+                class="color-dot dot-cssblue"
+                title="CSS Blue #0B5BE3"
+              ></span>
+              <span
+                class="color-dot dot-deepnavy"
+                title="Deep Navy #1E3053"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
